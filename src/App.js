@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Tweet from "./tweet";
 
 function App() {
+  const [isRed, setRed] = useState(false);
+  const [count, setCount] = useState(0);
+
+  let increment = () => {
+    setCount(count + 1);
+    setRed(!isRed);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className={isRed ? "red" : ""}>Change my color</h1>
+      <button onClick={increment}>Increment</button>
+      <h1>{count}</h1>
+      <div className="box">
+        <Tweet name="John" msg="Random msg1!" />
+        <Tweet name="Ann" msg="Random msg2!" />
+        <Tweet name="Mark" msg="Random msg3!" />
+        <Tweet name="Susan" msg="Random msg4!" />
+      </div>
     </div>
   );
 }
